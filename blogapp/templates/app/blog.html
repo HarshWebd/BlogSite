@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,300&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300&display=swap" rel="stylesheet">
+    <title>Blogs - BlogSite</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: rgb(212 212 212 / 21%);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .blog {
+            background-color: white;
+            margin-bottom: 5%;
+            padding: 2% 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 1%;
+            background-color: white;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 13px;
+            font-size: 18px;
+            cursor: pointer;
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a li {
+            padding: 2px 5px;
+        }
+
+        a li:hover {
+            color: rgb(0, 0, 0);
+        }
+
+        .blog div {
+            width: 70%;
+            margin: auto;
+        }
+
+        nav {
+            box-shadow: 3px 3px 10px 3px rgba(88, 88, 88, 0.541);
+            position: fixed;
+            width: 100%;
+        }
+
+        #heading {
+            text-align: center;
+            font-size: 65px;
+            margin: 2% 0;
+            text-shadow: 0 3px 2px #ff5100;
+        }
+
+        span a {
+            margin: 10px;
+            border: 1px solid black;
+            border-radius: 0.5rem;
+            background-color: grey;
+            padding: 5px;
+            color: black;
+            text-decoration: none;
+        }
+
+        #sitenameh1 {
+            font-size: 18px;
+            display: none;
+            margin-right: 5%;
+            color: black;
+            font-weight: 400;
+        }
+
+        .hamburger {
+            display: none;
+        }
+
+        @media screen and (max-width:500px) {
+            #heading {
+                font-size: 45px;
+                text-shadow: unset;
+            }
+
+            .blog div {
+                width: 95%;
+                margin: 0 15px;
+            }
+        }
+
+        @media screen and (max-width:800px) {
+            #sitenameh1 {
+                display: inline-block;
+            }
+
+            nav {
+                background-color: rgb(255, 255, 255);
+                padding: 10px;
+            }
+
+            .hamburger {
+                display: inline-block;
+                font-size: 32px;
+                cursor: pointer;
+            }
+
+            .hamdiv {
+                position: absolute;
+                top: 1%;
+                right: 5%;
+            }
+
+            nav ul li {
+                display: block;
+            }
+
+            nav ul {
+                position: absolute;
+                /* top: 41px; */
+                top: -150px;
+                left: 0;
+                width: 100%;
+                padding: 10px 5px;
+            }
+
+            #sitenameli {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <h1 id="sitenameh1">BlogSite </h1>
+        <div class="hamdiv">
+            <div class="hamburger" onclick="show()">&#9776;</div>
+        </div>
+        <ul>
+            <li id="sitenameli" style="margin-right: 5%; font-weight: 500; color: rgb(0, 0, 0);">BlogSite </li>
+            <a href="{% url 'showhome' %}">
+                <li>Home</li>
+            </a>
+            <a href="">
+                <li style="color: black;">Blogs</li>
+            </a>
+            <a href="{% url 'showabout' %}">
+                <li>About</li>
+            </a>
+            <a href="{% url 'showcontact' %}">
+                <li>Contact Us</li>
+            </a>
+        </ul>
+    </nav>
+    <br><br>
+    <h1 id="heading">Blogs</h1>
+    {% for i in key %}
+    <div class="blog">
+        <div>
+            <span style="display: flex; gap: 10%; align-items: baseline;">
+                <h2>{{i.Title}}</h1>
+                    <h5 style="font-weight: 400;">By- {{i.Author}}</h5>
+            </span>
+            <br>
+            <tr>
+                <td>
+                    <p style="font-family: 'Merriweather Sans', sans-serif; line-height: 30px; font-size: 16px;">
+                        {{i.Post|linebreaksbr}}</p>
+                </td>
+            </tr>
+            <h6>{{i.Date}}</h6>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if key.has_previous %}
+            <a href="?page=1">&laquo; First</a>
+            <a href="?page={{ key.previous_page_number }}">&lsaquo; Prev</a>
+            {% endif %}
+
+            <span class="current-page">
+                Page {{ key.number }} of {{ key.paginator.num_pages }}
+            </span>
+
+            {% if key.has_next %}
+            <a href="?page={{ key.next_page_number }}">Next &rsaquo;</a>
+            <a href="?page={{ key.paginator.num_pages }}">Last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    <script>
+        function show() {
+            const navUl = document.querySelector('nav ul');
+            if (navUl.style.top === '41px') {
+                navUl.style.transition = 'unset'
+                navUl.style.top = '-150px';
+
+            }
+            else {
+                navUl.style.transition = 'top 0.1s ease'
+                navUl.style.top = '41px';
+            }
+
+        }
+    </script>
+</body>
+
+</html>

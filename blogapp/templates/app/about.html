@@ -1,0 +1,227 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,300&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300&display=swap" rel="stylesheet">
+    <title>About - BlogSite</title>
+
+    <style>
+          *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: rgba(212, 212, 212, 0.22);
+            font-family: 'Poppins', sans-serif;
+            /* background-color: black;
+            color: white; */
+        }
+
+        a li{
+            padding: 2px 5px;
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        nav{
+            box-shadow: 3px 3px 10px 3px rgba(88, 88, 88, 0.541);
+            position: fixed;
+            width: 100%;
+        }
+ 
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 1%;
+            background-color: white;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 13px;
+            font-size: 18px;
+            cursor: pointer;
+            ;
+            color: grey;
+        }
+
+        a li:hover{
+            color: black;
+        }
+        
+        .about h1{
+            text-align: center;
+            font-size: 65px;
+            margin: 2% 0;
+            text-shadow: 0 3px 2px #ff5100;
+        }
+
+        .start{
+            width: 60%;
+            margin: auto;
+            font-size: 20px;
+        }
+        .start p{
+            line-height: 30px;
+            font-family:'Merriweather Sans', sans-serif;
+            margin: 0 10px 22px 10px;
+            word-spacing: 2px;
+            letter-spacing: 1px;
+        }
+
+        .hamburger{
+            display: none;
+        }
+
+        #sitenameh1{
+                font-size: 18px;
+                display: none;
+                margin-right: 5%;
+                color: black;
+                font-weight: 400;
+        }
+
+
+        @media screen and (max-width:550px){
+            .start{
+            margin: 15px;
+            width: 100%;
+            font-size: 14px;
+            }
+            .start p{
+                letter-spacing: unset;
+            }
+            .about h1{
+            font-size: 38px;
+            text-shadow: unset;
+            }
+        }
+        @media screen and (min-width:551px) and (max-width:1000px){
+            .start{
+            margin: 20px;
+            width: 95%;
+            font-size: 16px;
+            }
+            .about h1{  
+                text-shadow: unset;
+            }
+        }
+
+        @media screen and (max-width:800px){
+            #sitenameh1{
+                display: inline-block;
+            }
+
+            nav{
+                background-color: rgb(255, 255, 255);
+                padding: 10px;
+            }
+
+            .hamburger{
+                display: inline-block;
+                font-size: 32px;
+                cursor: pointer;
+            }
+
+            .hamdiv{
+                position: absolute;
+                top:1%;
+                right:5%;
+            }
+
+            nav ul li{
+                display: block;
+            } 
+
+            nav ul{
+                position: absolute;
+                /* top: 41px; */
+                top: -150px;
+                left: 0;
+                width: 100%;
+                padding: 10px 5px;
+            } 
+
+            #sitenameli{
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+      <nav>
+        <h1 id="sitenameh1">BlogSite </h1>
+        <div class="hamdiv"><div class="hamburger" onclick="show()">&#9776;</div></div>
+        <ul>
+            <li id="sitenameli" style="margin-right: 5%; color: black;">BlogSite </li>
+            <a href="{% url 'showhome' %}"><li>Home</li></a>
+            <a href="{% url 'showblog' %}"><li>Blogs</li></a>
+            <a href=""><li style="color: black;">About</li></a>
+            <a href="{% url 'showcontact' %}"><li>Contact Us</li></a>
+        </ul>
+    </nav>
+    <br><br><br>
+
+    <div class="about">
+        <h1><Strong>Welcome to BlogSite</Strong></h1>
+        <div class="start">
+            <!-- <img src="{% static 'app/images/blog.png' %}" style="width: 15%; float: left; overflow: hidden; margin:0 10px 5px 5px;"> -->
+            <p>
+                Welcome to our blog site! We are dedicated to providing a diverse range of content that caters to all interests and preferences. Our team of writers cover a broad spectrum of categories, including technology, lifestyle, health, business, travel, food, entertainment, news, education, and sports. Our aim is to create a space where readers can learn, discover, and engage with topics that are relevant to them. We believe that everyone deserves access to high-quality, informative content that is both engaging and entertaining, and we are committed to delivering just that.
+            </p>
+
+            <p>
+                Our blog site is the perfect destination for readers looking to expand their knowledge and stay up-to-date with the latest trends and developments in their areas of interest. Whether you're a seasoned professional or just starting out in your field, we have something for you. Our team of writers is composed of experts in their respective areas, who are passionate about sharing their knowledge with our readers.
+            </p>
+
+            <p>
+                We understand that people have different learning styles, and that's why we use a variety of formats to present our content. From articles and infographics to videos and podcasts, our posts are designed to cater to different preferences and interests. We also believe in fostering a sense of community among our readers, and encourage them to share their own experiences and perspectives in the comments section.
+            </p>
+
+            <p>
+                Our commitment to providing diverse and informative content extends beyond just the topics we cover. We are also committed to creating an inclusive and welcoming environment for all readers. We believe that everyone's voice deserves to be heard, regardless of their background, identity, or beliefs. We strive to create a safe and respectful space where readers can engage with each other in a constructive and meaningful way.
+            </p>
+
+            <p>
+                At our blog site, we take pride in the quality of our content. We understand that our readers have busy lives, and we want to ensure that the time they spend on our site is well worth it. That's why we invest in research, fact-checking, and editing to ensure that our posts are accurate, engaging, and easy to read. We are also committed to transparency and honesty, and if we make mistakes, we will correct them promptly.
+            </p>
+
+            <p>
+                In addition to our regular blog posts, we also offer a range of resources for our readers. These include e-books, webinars, online courses, and other tools that can help them deepen their understanding of the topics we cover. We believe that learning is a lifelong journey, and we want to support our readers in their pursuit of knowledge and personal growth.
+            </p>
+            <p>
+                Thank you for visiting our site, and we hope you enjoy exploring our content. If you have any feedback or suggestions, please don't hesitate to reach out to us. We value your input and are always looking for ways to improve our site and serve our readers better.
+            </p>
+        </div>
+    </div>
+    <script>
+        function show() {
+            const navUl = document.querySelector('nav ul');
+            if (navUl.style.top === '41px')
+                {
+                    navUl.style.transition = 'unset'
+                    navUl.style.top = '-150px';
+                   
+                }
+            else{
+                navUl.style.transition = 'top 0.1s ease'
+                navUl.style.top = '41px';
+            }
+            
+        }
+    </script>
+</body>
+</html>
